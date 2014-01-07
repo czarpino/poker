@@ -28,7 +28,16 @@
         
         <h2>Plays</h2>
         <section>
-            
+            <?php foreach ($plays as $player => $cards): ?>
+            <p>
+                <strong>Player <?php echo $player ?>:</strong>
+                <?php echo $cards[0]->getValue() . " of " . $cards[0]->getSuit(); ?>, 
+                <?php echo $cards[1]->getValue() . " of " . $cards[1]->getSuit(); ?>, 
+                <?php echo $cards[2]->getValue() . " of " . $cards[2]->getSuit(); ?>, 
+                <?php echo $cards[3]->getValue() . " of " . $cards[3]->getSuit(); ?>, 
+                <?php echo $cards[4]->getValue() . " of " . $cards[4]->getSuit(); ?>, 
+            </p>
+            <?php endforeach; ?>
         </section>
     </body>
 </html>
