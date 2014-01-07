@@ -92,4 +92,16 @@ class Utility
         return $names;
     }
     
+    /**
+     * Order played hands from best to worst
+     * 
+     * @param array $plays
+     * 
+     * @return Ranked plays
+     */
+    public function rank($plays)
+    {
+        // TODO
+    }
+    
 }
