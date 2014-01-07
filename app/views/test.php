@@ -6,8 +6,9 @@
     </head>
     <body>
         <h1>Poker</h1>
+        
+        <h2>Scenario:</h2>
         <section>
-            <h3>Scenario:</h3>
             <?php foreach ($scenario["private"] as $player => $cards): ?>
             <p>
                 <strong>Player <?php echo $player ?>:</strong>
@@ -23,6 +24,11 @@
                 <?php echo $scenario["community"][3]->getValue() . " of " . $scenario["community"][3]->getSuit(); ?>,
                 <?php echo $scenario["community"][4]->getValue() . " of " . $scenario["community"][4]->getSuit(); ?>
             </p>
+        </section>
+        
+        <h2>Plays</h2>
+        <section>
+            
         </section>
     </body>
 </html>
