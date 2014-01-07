@@ -54,6 +54,7 @@ class Utility
     }
     
     /**
+     * Generate plays for a showdown
      * 
      * @param array $privateCards
      * @param array $communityCards
