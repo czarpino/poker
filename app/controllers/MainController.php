@@ -2,11 +2,6 @@
 
 
 
-/**
- * Description of MainController
- *
- * @author cathy
- */
 class MainController
 {
     
