@@ -21,9 +21,12 @@ class MainController
     
     public function poker()
     {
-        $util = new PokerUtility();
+        $util = new \Foo\PokerOO\PokerUtility();
         
-        $players = $util->createPlayers(intval($_GET("players")));
+        $players = $util->createPlayers(intval($_GET["players"]));
+        
+        //echo nl2br(print_r($players, true)); exit;
+        
         $deck = $util->createDeck();
         
         $poker = new Poker($players, $deck);
