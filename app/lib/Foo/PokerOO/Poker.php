@@ -15,7 +15,14 @@ class Poker
     
     public function dealPrivateCards()
     {
-        // TODO
+        foreach ($this->players as $key => $player) {
+            $player->setCards(array (
+                $this->deck[2 * $key],
+                $this->deck[2 * $key + 1]
+            ));
+        }
+        
+        return $this;
     }
     
     public function dealCommunityCards()
