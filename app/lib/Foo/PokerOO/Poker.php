@@ -41,7 +41,12 @@ class Poker
             $player->chooseHand($this->communityCards);
         }
         
-        // TODO rank player hands
+        return $this;
+    }
+    
+    public function scorePlayerHands()
+    {
+        // TODO
     }
     
     public function getCommunityCards()

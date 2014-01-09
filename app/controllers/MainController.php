@@ -29,9 +29,10 @@ class MainController
         $poker = new \Foo\PokerOO\Poker($players, $deck);
         $poker->dealPrivateCards();
         $poker->dealCommunityCards();
-        echo nl2br(print_r($deck, true));
-        echo nl2br(print_r($poker->getCommunityCards(), true)); exit;
-        $rankedPlayers = $poker->showdown();
+        $poker->showdown();
+        echo nl2br(print_r($players, true)); exit;
+        $poker->scorePlayerHands();
+        $rankedPlayers = $poker->getPlayersByScore();
         
         // include template
     }
