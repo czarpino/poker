@@ -10,4 +10,11 @@ class Player
     {
         $this->name = $name;
     }
+    
+    public function setCards(array $cards)
+    {
+        $this->privateCards = $cards;
+        
+        return $this;
+    }
 }
