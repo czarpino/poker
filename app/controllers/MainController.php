@@ -31,8 +31,7 @@ class MainController
         $poker->dealCommunityCards();
         echo nl2br(print_r($deck, true));
         echo nl2br(print_r($poker->getCommunityCards(), true)); exit;
-        $poker->showdown();
-        $rankedPlayers = $poker->getRankedPlayers();
+        $rankedPlayers = $poker->showdown();
         
         // include template
     }

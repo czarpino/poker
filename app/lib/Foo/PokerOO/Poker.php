@@ -37,12 +37,11 @@ class Poker
     
     public function showdown()
     {
-        // TODO
-    }
-    
-    public function getResults()
-    {
-        // TODO
+        foreach ($this->players as $player) {
+            $player->chooseHand($this->communityCards);
+        }
+        
+        // TODO rank player hands
     }
     
     public function getCommunityCards()
