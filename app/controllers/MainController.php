@@ -26,11 +26,11 @@ class MainController
         $players = $util->createPlayers(intval($_GET["players"]));
         $deck = $util->createDeck();
         
-        //echo nl2br(print_r($deck, true)); exit;
-        
         $poker = new \Foo\PokerOO\Poker($players, $deck);
         $poker->dealPrivateCards();
         $poker->dealCommunityCards();
+        echo nl2br(print_r($deck, true));
+        echo nl2br(print_r($poker->getCommunityCards(), true)); exit;
         $poker->showdown();
         $rankedPlayers = $poker->getRankedPlayers();
         

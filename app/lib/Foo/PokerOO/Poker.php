@@ -5,7 +5,7 @@
 class Poker
 {
     
-    private $players, $deck;
+    private $players, $deck, $communityCards = [];
     
     public function __construct($players, $deck)
     {
@@ -27,7 +27,12 @@ class Poker
     
     public function dealCommunityCards()
     {
-        // TODO
+        $numOfPlayers = count($this->players);
+        for ($i = 0; $i < 5; $i ++) {
+            $this->communityCards[] = $this->deck[2 * $numOfPlayers + $i];
+        }
+        
+        return $this;
     }
     
     public function showdown()
@@ -38,6 +43,11 @@ class Poker
     public function getResults()
     {
         // TODO
+    }
+    
+    public function getCommunityCards()
+    {
+        return $this->communityCards;
     }
     
 }
