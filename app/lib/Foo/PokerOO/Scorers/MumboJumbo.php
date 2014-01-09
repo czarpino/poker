@@ -7,13 +7,18 @@ class MumboJumbo implements Scorer
     
     public function score(array $hand)
     {
+        $handType = $this->_indentifyHand();
+        $mult = $this->_getMultiplier($handType);
         $baseScore = 0;
         
         foreach ($hand as $card) {
             $baseScore += $this->_getCardValue($card);
         }
         
-        $mult = $this->_getMultiplier($this->_indentifyHand());
+        if ("straight" === $handType || "straight flush" === $handType) {
+            // if lowest straight (5, 4, 3, 2, Ace) then adjust value of ace to 1
+            // by subtracting 12 to basevalue
+        }
         
         return $baseScore + $mult * $this->_getMaxPossibleBaseScore();
     }
@@ -45,6 +50,11 @@ class MumboJumbo implements Scorer
     {
         // 4 Aces (52) + King (12)
         return 64;
+    }
+    
+    public function _getMultiplier($handType)
+    {
+        
     }
     
 }
