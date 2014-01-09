@@ -2,14 +2,24 @@
 
 
 
+/**
+ * A mumbo jumbo algorithm for scoring hands
+ */
 class MumboJumbo implements Scorer
 {
     
+    /**
+     * Evaluate hand of cards
+     *  
+     * @param array $hand
+     * 
+     * @return Hand score
+     */
     public function score(array $hand)
     {
         $handType = $this->_indentifyHand();
         $mult = $this->_getMultiplier($handType);
-        $baseScore = 0;
+        /*baseScore = 0;
         
         foreach ($hand as $card) {
             $baseScore += $this->_getCardValue($card);
@@ -18,9 +28,9 @@ class MumboJumbo implements Scorer
         if ("straight" === $handType || "straight flush" === $handType) {
             // if lowest straight (5, 4, 3, 2, Ace) then adjust value of ace to 1
             // by subtracting 12 to basevalue
-        }
+        }*/
         
-        return $baseScore + $mult * $this->_getMaxPossibleBaseScore();
+        return /*$baseScore +*/ $mult * $this->_ceilingScore();
     }
     
     private function _getCardValue(\Foo\PokerOO\Card $card)
@@ -46,7 +56,7 @@ class MumboJumbo implements Scorer
         return intval($kind) - 1;
     }
     
-    private function _getMaxPossibleBaseScore()
+    private function _ceilingScore()
     {
         // 4 Aces (52) + King (12)
         return 64;
@@ -54,7 +64,11 @@ class MumboJumbo implements Scorer
     
     public function _getMultiplier($handType)
     {
-        
+        switch ($handType) {
+            case "":
+            default:
+                return 0;
+        }
     }
     
 }
