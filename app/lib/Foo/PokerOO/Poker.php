@@ -76,4 +76,9 @@ class Poker
         return $this->communityCards;
     }
     
+    public function getPlayers()
+    {
+        return $this->players;
+    }
+    
 }

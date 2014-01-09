@@ -73,4 +73,14 @@ class Player
         return $this->name;
     }
     
+    /**
+     * Retrieve private cards
+     * 
+     * @return array Private cards
+     */
+    public function getCards()
+    {
+        return $this->cards;
+    }
+    
 }

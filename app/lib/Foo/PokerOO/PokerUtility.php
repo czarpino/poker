@@ -62,7 +62,7 @@ class PokerUtility
      * 
      * @return array
      */
-    public function sortPlayersByHand($players, Scorer $scorer = NULL, Sorter $sorter = NULL)
+    public function sortPlayersByHand($players, Scorer $scorer = NULL)
     {
         if (NULL === $scorer) {
             $scorer = new Scorers\MumboJumbo();
@@ -75,19 +75,31 @@ class PokerUtility
         }
         
         // DEBUG
+//        foreach ($players as $key => $player) {
+//            echo $player->getName() . "(" . $scores[$key] . "):";
+//            foreach ($player->getHand() as $card) {
+//                echo "$card - ";
+//            }
+//            echo "<br/>";
+//        }
+//        exit;
+        
+        $assocScores = [];
+        $assocPlayers = [];
+        
         foreach ($players as $key => $player) {
-            echo $player->getName() . "(" . $scores[$key] . "):";
-            foreach ($player->getHand() as $card) {
-                echo "$card - ";
-            }
-            echo "<br/>";
-        }
-        exit;
-        
-        if (NULL === $sorter) {
-            $sorter = new QuickSorter();
+            $assocScores[$player->getName()] = $scores[$key];
+            $assocPlayers[$player->getName()] = $player;
         }
         
-        return $sorter->sort($players, $scores);
+        arsort($assocScores);
+        
+        $sortedPlayers = [];
+        
+        foreach ($assocScores as $key => $score) {
+            $sortedPlayers[] = $assocPlayers[$key];
+        }
+        
+        return $sortedPlayers;
     }
 }
