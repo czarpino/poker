@@ -7,5 +7,5 @@
  */
 interface Scorer
 {
-    public function score($cards);
+    public function score(\Foo\PokerOO\Hand $hand);
 }

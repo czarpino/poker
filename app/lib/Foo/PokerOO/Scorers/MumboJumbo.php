@@ -15,11 +15,10 @@ class MumboJumbo implements Scorer
      * 
      * @return Hand score
      */
-    public function score(array $hand)
+    public function score(\Foo\PokerOO\Hand $hand)
     {
-        //return rand(1, 5);
-        $handType = $this->_indentifyHand($hand);
-        $mult = $this->_getMultiplier($handType);
+//        $handType = $this->_indentifyHand($hand);
+        $mult = $this->_getMultiplier($hand->getType());
         /*baseScore = 0;
         
         foreach ($hand as $card) {
@@ -32,29 +31,6 @@ class MumboJumbo implements Scorer
         }*/
         
         return /*$baseScore +*/ $mult * $this->_ceilingScore();
-    }
-    
-    private function _getCardValue(\Foo\PokerOO\Card $card)
-    {
-        $kind = $card->getKind();
-        
-        if ("Ace" === $kind) {
-            return 1;
-        }
-        
-        if ("King" === $kind) {
-            return 13;
-        }
-        
-        if ("Queen" === $kind) {
-            return 12;
-        }
-        
-        if ("Jack" === $kind) {
-            return 11;
-        }
-        
-        return intval($kind);
     }
     
     private function _ceilingScore()
@@ -85,64 +61,6 @@ class MumboJumbo implements Scorer
             default:
                 return 0;
         }
-    }
-    
-    private function _indentifyHand($hand)
-    {
-        $occurrences = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        $suits = [];
-        $kindValues = [];
-        
-        foreach ($hand as $card) {
-            $occurrences[$this->_getCardValue($card) - 1] += 1;
-            $suits[] = $card->getSuit();
-            $kindValues[] = $this->_getCardValue($card);
-        }
-        
-        $occurrences2 = [0, 0, 0, 0, 0];
-        
-        foreach ($occurrences as $occurrence) {
-            $occurrences2[$occurrence] += 1;
-        }
-        
-        if (1 === $occurrences2[4]) {
-            return "four of a kind";
-        }
-        
-        if (1 === $occurrences2[3] && 1 === $occurrences2[2]) {
-            return "full house";
-        }
-        
-        if (1 === $occurrences2[3]) {
-            return "three of a kind";
-        }
-        
-        if (2 === $occurrences2[2]) {
-            return "two pairs";
-        }
-        
-        if (1 === $occurrences2[2]) {
-            return "pair";
-        }
-        
-        sort($kindValues);
-        $consecutiveSum = intval($kindValues[4] / 2) * ($kindValues[0] + $kindValues[4]) + $kindValues[2];
-        $isStraight = array_sum($kindValues) === $consecutiveSum;
-        $isFlush = 1 === count(array_count_values($suits));
-        
-        if ($isStraight && $isFlush) {
-            return "straight flush";
-        }
-        
-        if ($isFlush) {
-            return "flush";
-        }
-        
-        if ($isStraight) {
-            return "straight";
-        }
-        
-        return "nothing";
     }
     
 }

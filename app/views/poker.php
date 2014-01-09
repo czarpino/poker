@@ -39,9 +39,9 @@
             <ul>
             <?php foreach ($poker->getPlayers() as $player): ?>
                 <li>
-                    <h3><?php echo $player->getName(); ?></h3>
+                    <h3><?php echo $player->getName() . " : (" . $player->getHand()->getType() . ")"; ?></h3>
                     <ul>
-                        <?php foreach ($player->getHand() as $card): ?>
+                        <?php foreach ($player->getHand()->getCards() as $card): ?>
                         <li><?php echo $card; ?></li>
                         <?php endforeach; ?>
                     </ul>
@@ -55,9 +55,9 @@
             <ul>
             <?php foreach ($sortedPlayers as $player): ?>
                 <li>
-                    <h3><?php echo $player->getName(); ?></h3>
+                    <h3><?php echo $player->getName() . " : (" . $player->getHand()->getType() . ")"; ?></h3>
                     <ul>
-                        <?php foreach ($player->getHand() as $card): ?>
+                        <?php foreach ($player->getHand()->getCards() as $card): ?>
                         <li><?php echo $card; ?></li>
                         <?php endforeach; ?>
                     </ul>
