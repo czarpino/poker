@@ -5,7 +5,7 @@
 class Poker
 {
     
-    private $players, $deck, $communityCards = [];
+    private $players, $deck, $communityCards = [], $scores = [];
     
     public function __construct($players, $deck)
     {
@@ -42,11 +42,6 @@ class Poker
         }
         
         return $this;
-    }
-    
-    public function scorePlayerHands()
-    {
-        // TODO
     }
     
     public function getCommunityCards()
