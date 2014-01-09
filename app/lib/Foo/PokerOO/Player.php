@@ -33,4 +33,9 @@ class Player
         return $this->hand;
     }
     
+    public function getName()
+    {
+        return $this->name;
+    }
+    
 }
