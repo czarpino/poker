@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Poker</h1>
-        <form action="/test">
+        <form action="/poker">
             <label for="players">Enter number of players:</label>
             <input name="players" type="text">
             <input type="submit">
