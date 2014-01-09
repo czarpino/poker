@@ -28,4 +28,9 @@ class Player
         return $this;
     }
     
+    public function getHand()
+    {
+        return $this->hand;
+    }
+    
 }
