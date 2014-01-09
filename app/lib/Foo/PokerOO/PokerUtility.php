@@ -4,6 +4,9 @@
 
 class PokerUtility
 {
+    private $suits  = ["Heart", "Spade", "Club", "Diamond"];
+    private $kinds = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"];
+    
     public function createPlayers($numOflayers)
     {
         $players = [];
@@ -16,16 +19,19 @@ class PokerUtility
     
     public function createDeck()
     {
-        $suits  = ["Heart", "Spade", "Club", "Diamond"];
-        $values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
         $deck   = [];
         
-        foreach ($suits as $suit) {
-            foreach ($values as $value) {
-                $deck[] = new Card($suit, $value);
+        foreach ($this->suits as $suit) {
+            foreach ($this->kinds as $kind) {
+                $deck[] = new Card($suit, $kind);
             }
         }
         
         return $deck;
+    }
+    
+    public function score($cards)
+    {
+        
     }
 }
