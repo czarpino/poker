@@ -17,6 +17,7 @@ class Poker
     {
         $this->players = $players;
         $this->deck = $deck;
+        shuffle($this->deck);
     }
     
     /**
