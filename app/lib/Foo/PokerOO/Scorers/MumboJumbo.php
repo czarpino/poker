@@ -63,7 +63,7 @@ class MumboJumbo implements Scorer
         return 64;
     }
     
-    public function _getMultiplier($handType)
+    private function _getMultiplier($handType)
     {
         switch ($handType) {
             case "pair":
@@ -87,7 +87,7 @@ class MumboJumbo implements Scorer
         }
     }
     
-    public function _indentifyHand($hand)
+    private function _indentifyHand($hand)
     {
         $occurrences = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         $suits = [];
