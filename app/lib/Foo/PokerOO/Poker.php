@@ -5,14 +5,25 @@
 class Poker
 {
     
-    private $players, $deck, $communityCards = [], $scores = [];
+    private $players, $deck, $communityCards = [];
     
+    /**
+     * Constructor
+     * 
+     * @param type $players
+     * @param type $deck
+     */
     public function __construct($players, $deck)
     {
         $this->players = $players;
         $this->deck = $deck;
     }
     
+    /**
+     * Deal private cards to each player
+     * 
+     * @return \Foo\PokerOO\Poker
+     */
     public function dealPrivateCards()
     {
         foreach ($this->players as $key => $player) {
@@ -25,6 +36,11 @@ class Poker
         return $this;
     }
     
+    /**
+     * Deal community cards
+     * 
+     * @return \Foo\PokerOO\Poker
+     */
     public function dealCommunityCards()
     {
         $numOfPlayers = count($this->players);
@@ -35,6 +51,11 @@ class Poker
         return $this;
     }
     
+    /**
+     * Every player plays their chosen hand
+     * 
+     * @return \Foo\PokerOO\Poker
+     */
     public function showdown()
     {
         foreach ($this->players as $player) {
@@ -44,6 +65,11 @@ class Poker
         return $this;
     }
     
+    /**
+     * Retrieve community cards
+     * 
+     * @return array Community cards
+     */
     public function getCommunityCards()
     {
         return $this->communityCards;

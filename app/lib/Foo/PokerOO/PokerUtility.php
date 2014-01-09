@@ -10,6 +10,13 @@ class PokerUtility
     private $suits  = ["Heart", "Spade", "Club", "Diamond"];
     private $kinds = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"];
     
+    /**
+     * Create a specified number of players
+     * 
+     * @param int $numOflayers
+     * 
+     * @return \Foo\PokerOO\Player
+     */
     public function createPlayers($numOflayers)
     {
         $players = [];
@@ -20,6 +27,11 @@ class PokerUtility
         return $players;
     }
     
+    /**
+     * Create a deck of cards
+     * 
+     * @return \Foo\PokerOO\Card
+     */
     public function createDeck()
     {
         $deck   = [];
@@ -33,6 +45,15 @@ class PokerUtility
         return $deck;
     }
     
+    /**
+     * Sort specified players by their hands
+     * 
+     * @param array $players
+     * @param \Scorers\Scorer $scorer
+     * @param \Scorers\Sorter $sorter
+     * 
+     * @return array
+     */
     public function sortPlayersByHand($players, Scorer $scorer = NULL, Sorter $sorter = NULL)
     {
         if (NULL === $scorer) {

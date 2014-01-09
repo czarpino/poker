@@ -2,6 +2,9 @@
 
 
 
+/**
+ * Interface for scoring algorithms
+ */
 interface Scorer
 {
     public function score(array $cards);
