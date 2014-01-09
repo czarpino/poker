@@ -4,7 +4,7 @@
 
 class Player
 {
-    private $name, $privateCards, $hand = NULL;
+    private $name, $cards, $hand;
     
     public function __construct($name)
     {
@@ -13,13 +13,17 @@ class Player
     
     public function setCards(array $cards)
     {
-        $this->privateCards = $cards;
+        $this->cards = $cards;
         
         return $this;
     }
     
     public function chooseHand(array $communityCards)
     {
-        // TODOs
+        $options = array_merge($this->cards, $communityCards);
+        shuffle($options);
+        $this->hand = array_slice($options, 0, 5);
+        
+        return $this;
     }
 }
