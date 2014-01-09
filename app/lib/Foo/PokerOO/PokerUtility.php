@@ -30,8 +30,22 @@ class PokerUtility
         return $deck;
     }
     
-    public function score($cards)
+    public function sortPlayersByHand($players, $scorer = NULL, $sorter = NULL)
     {
+        if (NULL === $scorer) {
+            $scorer = new MumboJumbo();
+        }
         
+        $scores = [];
+        
+        foreach ($players as $key => $player) {
+            $scores[$key] = $scorer->score($player->getHand());
+        }
+        
+        if (NULL === $sorter) {
+            $sorter = new QuickSorter();
+        }
+        
+        return $sorter->sort($players, $scores);
     }
 }
