@@ -17,4 +17,9 @@ class Player
         
         return $this;
     }
+    
+    public function chooseHand(array $communityCards)
+    {
+        // TODOs
+    }
 }
