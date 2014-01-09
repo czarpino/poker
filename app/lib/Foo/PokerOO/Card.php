@@ -4,12 +4,12 @@
 
 class Card
 {
-    private $suit, $value;
+    private $suit, $kind;
     
     public function __construct($suit, $value)
     {
         $this->suit = $suit;
-        $this->value = $value;
+        $this->kind = $value;
     }
     
     public function getSuit()
@@ -17,13 +17,13 @@ class Card
         return $this->suit;
     }
     
-    public function getValue()
+    public function getKind()
     {
-        return $this->value;
+        return $this->kind;
     }
     
     public function __toString()
     {
-        return $this->value . " of " . $this->suit;
+        return $this->kind . " of " . $this->suit . "s";
     }
 }
