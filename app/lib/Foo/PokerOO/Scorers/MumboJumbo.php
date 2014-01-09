@@ -66,7 +66,22 @@ class MumboJumbo implements Scorer
     public function _getMultiplier($handType)
     {
         switch ($handType) {
-            case "":
+            case "pair":
+                return 1;
+            case "two pairs":
+                return 2;
+            case "three of a kind":
+                return 3;
+            case "straight":
+                return 4;
+            case "flush":
+                return 5;
+            case "fullhouse":
+                return 6;
+            case "four of a kind":
+                return 7;
+            case "straight flush":
+                return 8;
             default:
                 return 0;
         }
