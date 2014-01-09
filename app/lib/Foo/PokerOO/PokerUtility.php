@@ -6,7 +6,12 @@ class PokerUtility
 {
     public function createPlayers($numOflayers)
     {
-        // TODO
+        $players = [];
+        while (0 < $numOflayers --) {
+            $players[] = new Player("Player $numOflayers");
+        }
+        
+        return $players;
     }
     
     public function createDeck()
