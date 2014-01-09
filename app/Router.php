@@ -25,6 +25,8 @@ class Router
         require "controllers" . DIRECTORY_SEPARATOR . "MainController.php";
         
         switch ($request) {
+            case "/poker":
+                return (new MainController())->poker();
             case "/test":
                 return (new MainController())->test();
             default:
