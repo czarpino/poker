@@ -7,8 +7,16 @@ use Scorers\Sorter;
 
 class PokerUtility
 {
-    private $suits  = ["Heart", "Spade", "Club", "Diamond"];
-    private $kinds = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"];
+    
+    public function getSuits()
+    {
+        return ["Heart", "Spade", "Club", "Diamond"];
+    }
+    
+    public function getCardKinds()
+    {
+        return ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"];
+    }
     
     /**
      * Create a specified number of players
@@ -36,8 +44,8 @@ class PokerUtility
     {
         $deck   = [];
         
-        foreach ($this->suits as $suit) {
-            foreach ($this->kinds as $kind) {
+        foreach ($this->getSuits() as $suit) {
+            foreach ($this->getCardKinds() as $kind) {
                 $deck[] = new Card($suit, $kind);
             }
         }

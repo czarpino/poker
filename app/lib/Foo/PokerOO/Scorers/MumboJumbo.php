@@ -17,6 +17,7 @@ class MumboJumbo implements Scorer
      */
     public function score(array $hand)
     {
+        return rand(1, 5);
         $handType = $this->_indentifyHand();
         $mult = $this->_getMultiplier($handType);
         /*baseScore = 0;
