@@ -7,5 +7,5 @@
  */
 interface Scorer
 {
-    public function score(array $cards);
+    public function score($cards);
 }
