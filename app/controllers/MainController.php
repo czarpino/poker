@@ -33,12 +33,6 @@ class MainController
         
         $sortedPlayers = $util->sortPlayersByHand($players);
         
-        //var_dump($players);
-        //var_dump($sortedPlayers);
-//        echo nl2br(print_r($players, true));
-//        echo nl2br(print_r($sortedPlayers, true)); exit;
-        
-        // include template
         include  ".." . DIRECTORY_SEPARATOR . "app" . DIRECTORY_SEPARATOR . "views" . DIRECTORY_SEPARATOR . "poker.php";
     }
     
