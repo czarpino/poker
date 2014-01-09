@@ -4,6 +4,7 @@
 
 class Player
 {
+    
     private $name, $cards, $hand;
     
     public function __construct($name)
@@ -26,4 +27,5 @@ class Player
         
         return $this;
     }
+    
 }
