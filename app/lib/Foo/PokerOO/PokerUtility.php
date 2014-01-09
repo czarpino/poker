@@ -1,5 +1,8 @@
 <?php namespace Foo\PokerOO;
 
+use Scorers\Scorer;
+use Scorers\Sorter;
+
 
 
 class PokerUtility
@@ -30,10 +33,10 @@ class PokerUtility
         return $deck;
     }
     
-    public function sortPlayersByHand($players, $scorer = NULL, $sorter = NULL)
+    public function sortPlayersByHand($players, Scorer $scorer = NULL, Sorter $sorter = NULL)
     {
         if (NULL === $scorer) {
-            $scorer = new MumboJumbo();
+            $scorer = new Scorers\MumboJumbo();
         }
         
         $scores = [];
@@ -41,6 +44,16 @@ class PokerUtility
         foreach ($players as $key => $player) {
             $scores[$key] = $scorer->score($player->getHand());
         }
+        
+        // DEBUG
+        foreach ($players as $key => $player) {
+            echo $player->getName() . "(" . $scores[$key] . "):";
+            foreach ($player->getHand() as $card) {
+                echo "$card - ";
+            }
+            echo "<br/>";
+        }
+        exit;
         
         if (NULL === $sorter) {
             $sorter = new QuickSorter();
