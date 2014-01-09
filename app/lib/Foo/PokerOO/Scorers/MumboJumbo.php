@@ -17,8 +17,8 @@ class MumboJumbo implements Scorer
      */
     public function score(array $hand)
     {
-        return rand(1, 5);
-        $handType = $this->_indentifyHand();
+        //return rand(1, 5);
+        $handType = $this->_indentifyHand($hand);
         $mult = $this->_getMultiplier($handType);
         /*baseScore = 0;
         
@@ -39,22 +39,22 @@ class MumboJumbo implements Scorer
         $kind = $card->getKind();
         
         if ("Ace" === $kind) {
-            return 13;
+            return 1;
         }
         
         if ("King" === $kind) {
-            return 12;
+            return 13;
         }
         
         if ("Queen" === $kind) {
-            return 11;
+            return 12;
         }
         
         if ("Jack" === $kind) {
-            return 10;
+            return 11;
         }
         
-        return intval($kind) - 1;
+        return intval($kind);
     }
     
     private function _ceilingScore()
@@ -85,6 +85,64 @@ class MumboJumbo implements Scorer
             default:
                 return 0;
         }
+    }
+    
+    public function _indentifyHand($hand)
+    {
+        $occurrences = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        $suits = [];
+        $kindValues = [];
+        
+        foreach ($hand as $card) {
+            $occurrences[$this->_getCardValue($card) - 1] += 1;
+            $suits[] = $card->getSuit();
+            $kindValues[] = $this->_getCardValue($card);
+        }
+        
+        $occurrences2 = [0, 0, 0, 0, 0];
+        
+        foreach ($occurrences as $occurrence) {
+            $occurrences2[$occurrence] += 1;
+        }
+        
+        if (1 === $occurrences2[4]) {
+            return "four of a kind";
+        }
+        
+        if (1 === $occurrences2[3] && 1 === $occurrences2[2]) {
+            return "full house";
+        }
+        
+        if (1 === $occurrences2[3]) {
+            return "three of a kind";
+        }
+        
+        if (2 === $occurrences2[2]) {
+            return "two pairs";
+        }
+        
+        if (1 === $occurrences2[2]) {
+            return "pair";
+        }
+        
+        sort($kindValues);
+        $consecutiveSum = intval($kindValues[4] / 2) * ($kindValues[0] + $kindValues[4]) + $kindValues[2];
+        $isStraight = array_sum($kindValues) === $consecutiveSum;
+        $isFlush = 1 === count(array_count_values($suits));
+        
+        if ($isStraight && $isFlush) {
+            return "straight flush";
+        }
+        
+        if ($isFlush) {
+            return "flush";
+        }
+        
+        if ($isStraight) {
+            return "straight";
+        }
+        
+        return "nothing";
     }
     
 }
