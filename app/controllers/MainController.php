@@ -19,4 +19,20 @@ class MainController
         include  ".." . DIRECTORY_SEPARATOR . "app" . DIRECTORY_SEPARATOR . "views" . DIRECTORY_SEPARATOR . "test.php";
     }
     
+    public function poker()
+    {
+        $util = new PokerUtility();
+        
+        $players = $util->createPlayers(intval($_GET("players")));
+        $deck = $util->createDeck();
+        
+        $poker = new Poker($players, $deck);
+        $poker->dealPrivateCards();
+        $poker->dealCommunityCards();
+        $poker->showdown();
+        $rankedPlayers = $poker->getRankedPlayers();
+        
+        // include template
+    }
+    
 }
