@@ -31,8 +31,10 @@ class MainController
         $poker->dealCommunityCards();
         $poker->showdown();
         echo nl2br(print_r($players, true)); exit;
-        $poker->scorePlayerHands();
-        $rankedPlayers = $poker->getPlayersByScore();
+        
+        $defaultPlayerOrder = $poker->getPlayers();
+        $poker->sortPlayerByHand();
+        $rankedPlayerOrder = $poker->getPlayers();
         
         // include template
     }
