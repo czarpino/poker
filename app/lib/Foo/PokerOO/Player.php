@@ -43,13 +43,6 @@ class Player
         $options = array_merge($this->cards, $communityCards);
         shuffle($options);
         $cards = array_slice($options, 0, 5);
-        $cards = [
-            new Card("Heart", "Ace"),
-            new Card("Spade", "King"),
-            new Card("Heart", "Queen"),
-            new Card("Heart", "Jack"),
-            new Card("Heart", "10"),
-        ];
         $this->hand = new Hand($cards, $this->indentifyHand($cards));
         return $this;
     }
