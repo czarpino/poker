@@ -43,6 +43,13 @@ class Player
         $options = array_merge($this->cards, $communityCards);
         shuffle($options);
         $cards = array_slice($options, 0, 5);
+        $cards = [
+            new Card("Heart", "Ace"),
+            new Card("Spade", "King"),
+            new Card("Heart", "Queen"),
+            new Card("Heart", "Jack"),
+            new Card("Heart", "10"),
+        ];
         $this->hand = new Hand($cards, $this->indentifyHand($cards));
         return $this;
     }
@@ -122,9 +129,15 @@ class Player
             return "pair";
         }
         
-        sort($kindValues);
-        $consecutiveSum = intval($kindValues[4] / 2) * ($kindValues[0] + $kindValues[4]) + $kindValues[2];
-        $isStraight = array_sum($kindValues) === $consecutiveSum;
+        $isStraight = $this->_isConsecutive($kindValues);
+        
+        if (!$isStraight && 1 === $kindValues[0]) {
+            
+            // try treating ace as higher than king
+            $kindValues[0] = 14;
+            $isStraight = $this->_isConsecutive($kindValues);
+        }
+        
         $isFlush = 1 === count(array_count_values($suits));
         
         if ($isStraight && $isFlush) {
@@ -163,6 +176,13 @@ class Player
         }
         
         return intval($kind);
+    }
+    
+    private function _isConsecutive($arr)
+    {
+        sort($arr);
+        $consecutiveSum = 2 * ($arr[0] + $arr[4]) + $arr[2];
+        return array_sum($arr) === $consecutiveSum;
     }
     
 }
